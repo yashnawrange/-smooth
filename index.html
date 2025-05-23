@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yash Nawarange | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    /* --- Variables for Easy Theming --- */
+    :root {
+      --primary-blue: #2575fc;
+      --secondary-purple: #6a11cb;
+      --accent-green: #00ffd5;
+      --dark-bg-start: #1a2a3a;
+      --dark-bg-end: #0a1520;
+      --text-light: #e0e0e0;
+      --text-dark: #1a2a3a; /* Used for light mode text */
+      --card-bg: rgba(255, 255, 255, 0.08); /* Slightly transparent for glassmorphism */
+      --border-glow: rgba(0, 255, 213, 0.7);
+      --box-shadow-dark: rgba(0, 0, 0, 0.4);
+      --box-shadow-light: rgba(0, 0, 0, 0.2);
+
+      /* Theme specific variables */
+      --body-bg-gradient: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+      --header-bg-gradient: linear-gradient(135deg, var(--secondary-purple) 0%, var(--primary-blue) 100%);
+      --nav-bg: rgba(17, 17, 17, 0.95);
+      --section-bg: var(--card-bg);
+      --section-border: rgba(255, 255, 255, 0.1);
+      --footer-bg: rgba(0, 0, 0, 0.8);
+      --product-card-shadow: 0 8px 20px var(--box-shadow-dark);
+      --product-card-hover-shadow: 0 15px 35px var(--box-shadow-dark), 0 0 25px var(--accent-green);
+    }
+
+    /* Light Mode */
+    body.light-mode {
+      --body-bg-gradient: linear-gradient(135deg, #e0f2f7, #bbdefb);
+      --text-light: #333;
+      --text-dark: #eee;
+      --card-bg: rgba(255, 255, 255, 0.7);
+      --header-bg-gradient: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%);
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --section-bg: rgba(255, 255, 255, 0.9);
+      --section-border: rgba(0, 0, 0, 0.1);
+      --footer-bg: rgba(200, 200, 200, 0.8);
+      --box-shadow-dark: rgba(0, 0, 0, 0.2);
+      --box-shadow-light: rgba(0, 0, 0, 0.1);
+      --product-card-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      --product-card-hover-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 25px #4fc3f7;
+      color: var(--text-light); /* Adjust text color for light mode */
+    }
+
+
+    /* Base styles */
+    body {
+      font-family: 'Exo 2', sans-serif; /* Modern, techy font */
+      background: var(--body-bg-gradient);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      line-height: 1.7;
+      transition: background 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+    }
+
+    /* Global Glow Effect for body */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      filter: blur(100px);
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    body::before {
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--accent-green) 0%, transparent 60%);
+      animation: neonGlow1 10s infinite alternate ease-in-out;
+    }
+
+    body::after {
+      bottom: -100px;
+      right: -100px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, var(--primary-blue) 0%, transparent 60%);
+      filter: blur(120px);
+      animation: neonGlow2 12s infinite alternate-reverse ease-in-out;
+    }
+
+    /* Header section */
+    header {
+      text-align: center;
+      padding: 60px 20px 50px; /* Adjusted padding */
+      background: var(--header-bg-gradient);
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      animation: fadeInDown 1s ease-out;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--box-shadow-dark);
+      border-bottom: 2px solid var(--accent-green); /* Subtle accent line */
+      transition: background 0.5s ease; /* Smooth theme transition */
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* Using a more subtle, animated SVG background */
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E") repeat;
+      background-size: 200px;
+      opacity: 0.2; /* Subtle abstract texture */
+      z-index: 0;
+      animation: texturePan 30s linear infinite;
+    }
+
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px; /* Reduced space */
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-container img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-green);
+      box-shadow: 0 6px 25px rgba(0, 255, 213, 0.6), 0 0 40px rgba(0, 255, 213, 0.4);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .header-container img:hover {
+      transform: scale(1.15) rotate(7deg);
+      box-shadow: 0 10px 40px var(--accent-green), 0 0 60px rgba(0, 255, 213, 0.8);
+      animation: profilePulse 1.5s infinite alternate;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 8px; /* Slightly reduced margin */
+      text-shadow: 0 0 20px rgba(0, 255, 213, 0.8), 0 0 40px rgba(0, 255, 213, 0.6), 0 0 60px rgba(0, 255, 213, 0.4);
+      background: linear-gradient(45deg, #00ffd5, #8effd0, #00ffd5); /* Gradient text */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 2s infinite alternate;
+      transition: all 0.4s ease;
+    }
+
+    header h1:hover {
+      letter-spacing: 2px;
+      transform: translateY(-5px);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+      background: linear-gradient(90deg, var(--secondary-purple), var(--primary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    /* Navigation bar */
+    nav {
+      background: var(--nav-bg); /* Use variable */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px); /* For Safari */
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 18px 0;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
+      box-shadow: 0 8px 25px var(--box-shadow-dark);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(0, 255, 213, 0.3);
+      transition: background 0.5s ease; /* Smooth theme transition */
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      transition: all 0.3s ease, transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      font-size: 1.1rem;
+    }
+
+    nav a.active {
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
+      color: var(--text-dark); /* Darker text on active link */
+      box-shadow: 0 0 15px rgba(0, 255, 213, 0.7), 0 0 30px var(--primary-blue);
+      transform: translateY(-3px) scale(1.02);
+      letter-spacing: 0.8px;
+    }
+
+    nav a:hover:not(.active) { /* Apply hover effect only if not active */
+      background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
+      color: var(--text-dark); /* Darker text on hover */
+      box-shadow: 0 0 15px rgba(0, 255, 213, 0.7), 0 0 30px var(--primary-blue);
+      transform: translateY(-3px) scale(1.02);
+      letter-spacing: 0.8px;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--accent-green);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    nav a:hover::before, nav a.active::before { /* Also apply to active state */
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .cart-count {
+      background: #e74c3c;
+      border-radius: 50%;
+      padding: 4px 9px;
+      font-size: 0.9rem;
+      margin-left: 8px;
+      animation: pulse 1.5s infinite;
+      box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
+      display: inline-block; /* Ensure it respects padding/margin */
+      min-width: 25px; /* Prevent shrinking for single digit */
+      text-align: center;
+    }
+
+    /* Main sections */
+    section {
+      padding: 70px 30px;
+      max-width: 1100px;
+      margin: 40px auto;
+      background: var(--section-bg); /* Use variable */
+      border-radius: 25px;
+      box-shadow: 0 15px 40px var(--box-shadow-dark), 0 0 20px rgba(0, 255, 213, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.5s ease; /* Smooth theme transition */
+      border: 1px solid var(--section-border); /* Use variable */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden; /* For inner glows */
+    }
+
+    section:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 50px var(--box-shadow-dark), 0 0 30px var(--accent-green);
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--accent-green);
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 15px rgba(0, 255, 213, 0.9), 0 0 30px rgba(0, 255, 213, 0.6);
+      background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s infinite linear;
+      position: relative;
+      padding-bottom: 15px; /* Space for underline */
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      max-width: 150px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+      border-radius: 5px;
+      transition: transform 0.4s ease-out;
+    }
+
+    h2:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    p, li {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: color 0.5s ease; /* Smooth theme transition */
+    }
+
+    ul {
+      padding-left: 25px;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 15px;
+      transition: transform 0.2s ease, color 0.2s ease; /* Smooth theme transition */
+    }
+
+    ul li:hover {
+      transform: translateX(5px);
+      color: var(--accent-green);
+    }
+
+    ul li::before {
+      content: '⚡'; /* Unicode lightning bolt */
+      position: absolute;
+      left: 0;
+      color: var(--accent-green);
+      font-size: 1.3em;
+      line-height: inherit;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      filter: drop-shadow(0 0 5px var(--accent-green));
+    }
+
+    ul li:hover::before {
+      transform: rotate(10deg) scale(1.1);
+      filter: drop-shadow(0 0 8px var(--accent-green)) brightness(1.2);
+    }
+
+
+    .video-wrapper iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 25px;
+      display: block;
+      margin: 40px auto;
+      box-shadow: 0 15px 30px var(--box-shadow-dark), 0 0 25px var(--primary-blue);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 3px solid var(--primary-blue);
+    }
+
+    .video-wrapper iframe:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 40px var(--accent-green);
+    }
+
+    /* Products section */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .product {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      width: 280px;
+      box-shadow: var(--product-card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background 0.5s ease; /* Smooth theme transition */
+      flex-grow: 1;
+      max-width: calc(33.33% - 30px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+      z-index: 1; /* Ensure content is above pseudo-element */
+    }
+
+    .product::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(0, 255, 213, 0.05) 0%, transparent 70%);
+      animation: productGlow 4s infinite linear;
+      z-index: -1; /* Behind content */
+    }
+
+    .product:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: var(--product-card-hover-shadow);
+      border-color: var(--accent-green);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .product img:hover {
+      transform: scale(1.08);
+      filter: brightness(1.2) contrast(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+
+    .product p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 15px;
+      color: var(--accent-green);
+      text-shadow: 0 0 5px rgba(0, 255, 213, 0.5);
+    }
+
+    .product button {
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, var(--accent-green), var(--primary-blue));
+      color: var(--text-dark);
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      position: relative; /* For confetti origin */
+      overflow: hidden;
+    }
+
+    .product button:hover {
+      background: linear-gradient(45deg, var(--primary-blue), var(--secondary-purple));
+      color: white;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4), 0 0 20px var(--primary-blue);
+      border: 1px solid var(--accent-green);
+    }
+
+    /* Contact links */
+    #contact a {
+      color: var(--accent-green);
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 5px;
+      font-size: 1.15rem;
+    }
+
+    #contact a:hover {
+      color: #fff;
+      text-shadow: 0 0 15px var(--accent-green), 0 0 25px var(--primary-blue);
+      transform: scale(1.05);
+    }
+
+    /* Map iframe */
+    #contact iframe {
+      border: 3px solid var(--accent-green);
+      box-shadow: 0 8px 25px var(--box-shadow-dark), 0 0 20px var(--accent-green);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      width: 100%;
+      height: 350px;
+      border-radius: 20px;
+    }
+
+    #contact iframe:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7), 0 0 30px var(--accent-green), 0 0 50px var(--primary-blue);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--footer-bg); /* Use variable */
+      color: #bbb;
+      font-size: 1rem;
+      margin-top: 50px;
+      box-shadow: 0 -8px 20px var(--box-shadow-dark);
+      border-top: 1px solid rgba(0, 255, 213, 0.2);
+      transition: background 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+    }
+
+    /* Scroll to Top Button */
+    #scrollToTopBtn {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      background: linear-gradient(45deg, var(--primary-blue), var(--secondary-purple));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 20px var(--primary-blue);
+      transition: all 0.3s ease, transform 0.2s ease, opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #scrollToTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #scrollToTopBtn:hover {
+      background: linear-gradient(45deg, var(--accent-green), var(--primary-blue));
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 25px var(--accent-green);
+    }
+
+    /* Theme Toggle Button */
+    #themeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001; /* Above everything */
+      background: var(--nav-bg);
+      color: var(--text-light);
+      border: 1px solid var(--accent-green);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s ease, color 0.3s ease, border 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #themeToggle:hover {
+      background: var(--accent-green);
+      color: var(--text-dark);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 15px var(--accent-green);
+      transform: scale(1.05);
+    }
+
+    /* Confetti Container (for cart animation) */
+    .confetti-container {
+      position: fixed; /* Fixed so it's not affected by scroll */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 2000; /* High z-index to appear above everything */
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #f0f; /* Example confetti color, overridden by JS */
+      opacity: 0;
+      animation: confetti-fall 2s forwards;
+      border-radius: 50%;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-80px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+      70% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    }
+
+    @keyframes neonGlow1 {
+      0% { transform: translate(0, 0); opacity: 0.2; }
+      25% { transform: translate(50px, 50px); opacity: 0.3; }
+      50% { transform: translate(0, 100px); opacity: 0.25; }
+      75% { transform: translate(-50px, 50px); opacity: 0.35; }
+      100% { transform: translate(0, 0); opacity: 0.2; }
+    }
+
+    @keyframes neonGlow2 {
+      0% { transform: translate(0, 0); opacity: 0.25; }
+      25% { transform: translate(-50px, -50px); opacity: 0.35; }
+      50% { transform: translate(0, -100px); opacity: 0.3; }
+      75% { transform: translate(50px, -50px); opacity: 0.4; }
+      100% { transform: translate(0, 0); opacity: 0.25; }
+    }
+
+    @keyframes texturePan {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 10px rgba(0, 255, 213, 0.8), 0 0 20px rgba(0, 255, 213, 0.6); }
+      50% { text-shadow: 0 0 15px rgba(0, 255, 213, 1), 0 0 30px rgba(0, 255, 213, 0.8), 0 0 45px rgba(0, 255, 213, 0.6); }
+      100% { text-shadow: 0 0 10px rgba(0, 255, 213, 0.8), 0 0 20px rgba(0, 255, 213, 0.6); }
+    }
+
+    @keyframes profilePulse {
+      0% { transform: scale(1.15) rotate(7deg); }
+      50% { transform: scale(1.18) rotate(7deg); box-shadow: 0 10px 45px var(--accent-green), 0 0 70px rgba(0, 255, 213, 1); }
+      100% { transform: scale(1.15) rotate(7deg); }
+    }
+
+    @keyframes shine {
+      0% { background-position: -200%; }
+      100% { background-position: 200%; }
+    }
+
+    @keyframes productGlow {
+      0% { transform: rotate(0deg); opacity: 0.05; }
+      100% { transform: rotate(360deg); opacity: 0.05; }
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--x), var(--y)) rotate(var(--r));
+        opacity: 0;
+      }
+    }
+
+    /* --- Responsive Adjustments --- */
+
+    @media (max-width: 1024px) {
+        header h1 {
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.1rem;
+        }
+        .header-container img {
+            width: 100px;
+            height: 100px;
+        }
+        h2 {
+            font-size: 2.5rem;
+        }
+        .products {
+            gap: 20px;
+        }
+        .product {
+            max-width: calc(50% - 20px);
+        }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 50px 15px 40px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .header-container img {
+        width: 90px;
+        height: 90px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px 0;
+      }
+      nav a {
+        padding: 10px 20px;
+        width: calc(100% - 40px);
+        font-size: 1rem;
+      }
+      section {
+        padding: 50px 20px;
+        margin-top: 30px;
+        border-radius: 20px;
+      }
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+      p, li {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      ul li {
+        padding-left: 30px;
+      }
+      ul li::before {
+        font-size: 1.2em;
+      }
+      .video-wrapper iframe {
+        height: 320px;
+        margin: 30px auto;
+      }
+      .product {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 18px;
+        border-radius: 18px;
+      }
+      .product img {
+        height: 180px;
+      }
+      .product button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+      }
+      #scrollToTopBtn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      #themeToggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        top: 15px;
+        right: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 40px 10px 30px;
+      }
+      header h1 {
+        font-size: 1.5rem;
+        font-size: 6vw;
+      }
+      header p {
+        font-size: 0.8rem;
+        font-size: 3vw;
+      }
+      .header-container img {
+        width: 70px;
+        height: 70px;
+      }
+      nav {
+        gap: 8px;
+        padding: 10px 0;
+      }
+      nav a {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+      }
+      section {
+        padding: 35px 15px;
+        margin-top: 20px;
+        border-radius: 15px;
+      }
+      h2 {
+        font-size: 1.7rem;
+        margin-bottom: 25px;
+      }
+      p, li {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      ul li {
+        padding-left: 25px;
+      }
+      ul li::before {
+        font-size: 1.1em;
+      }
+      .video-wrapper iframe {
+        height: 250px;
+      }
+      .product {
+        padding: 15px;
+      }
+      .product img {
+        height: 150px;
+      }
+      .product p {
+        font-size: 1.1rem;
+      }
+      .product button {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+      }
+      footer {
+        padding: 20px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="mainHeader">
+    <div class="header-container">
+      <img src="yashhhhihoih.PNG" alt="Yash Nawarange">
+      <div>
+        <h1>Yash Nawarange</h1>
+        <p>HTML | CSS | JavaScript | AR/VR | Python</p>
+      </div>
+    </div>
+  </header>
+
+  <nav id="mainNav">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#products" class="nav-link">Products <span class="cart-count" id="cartCount">0</span></a>
+    <a href="#goals" class="nav-link">Goals</a>
+    <a href="#interests" class="nav-link">Interests</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+
+  <section id="about" data-aos="fade-up" data-aos-duration="1000">
+    <h2>About Me</h2>
+    <p><strong>// BIOGRAPHY</strong><br>
+      I'm a passionate developer who loves turning ideas into real, working products. Whether it's designing clean UI/UX for web apps, building backend logic, or experimenting with new technologies, I'm always up for a challenge. Over the years, I’ve worked on a variety of projects — from personal apps and college assignments to collaborative open-source contributions. I enjoy building things from scratch just as much as optimizing existing systems. My journey in tech started with curiosity and a lot of trial and error, but every bug I’ve fixed and every feature I’ve shipped has made me better at what I do.
+    </p>
+    <p><strong>// PERSONAL DETAILS</strong></p>
+    <ul>
+      <li>Name: Yash Nawarange</li>
+      <li>Address: Dahanu, Maharashtra</li>
+      <li>Study: St. John College of Engineering and Management</li>
+      <li>Degree: B-Tech in Computer Engineering</li>
+      <li>Mail: 123yash2133@sjcem.edu.in</li>
+      <li>Phone: 7498533950</li>
+    </ul>
+  </section>
+
+  <div class="video-wrapper" data-aos="zoom-in" data-aos-duration="1000">
+    <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID" title="A Relevant YouTube Video About My Work" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <section id="projects" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+    <h2>Projects</h2>
+    <ul>
+      <li data-aos="fade-left" data-aos-delay="300">
+        Built a full-stack notes app with login, search, and dark mode
+      </li>
+      <li data-aos="fade-left" data-aos-delay="400">
+        Created a first-person shooter prototype in Unity using C#
+      </li>
+      <li data-aos="fade-left" data-aos-delay="500">
+        Designed and deployed responsive portfolio and blog websites using HTML, CSS, JS, and React
+      </li>
+      <li data-aos="fade-left" data-aos-delay="600">
+        Explored backend development using Node.js, Express, and MongoDB
+      </li>
+      <li data-aos="fade-left" data-aos-delay="700">
+        Dabbled in Python for automation scripts, data parsing, and even some basic AI/ML experiments
+      </li>
+      <li data-aos="fade-left" data-aos-delay="800">
+        Developed mobile-friendly UIs with Flutter and React Native (in progress)
+      </li>
+    </ul>
+  </section>
+
+  <section id="products" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+    <h2>Products</h2>
+    <div class="products">
+      <div class="product" data-aos="zoom-in" data-aos-delay="100">
+        <a href="https://www.amazon.in/dp/B08N5WRWNW" target="_blank">
+          <img src="https://m.media-amazon.com/images/I/61mIUCd-37L._SX679_.jpg" alt="RGB Gaming Mouse">
+        </a>
+        <p>RGB Gaming Mouse</p>
+        <button onclick="addToCart(event)">Add to Cart</button>
+      </div>
+      <div class="product" data-aos="zoom-in" data-aos-delay="200">
+        <a href="https://www.amazon.in/dp/B07WHS7D9P" target="_blank">
+          <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL._SX679_.jpg" alt="Mechanical Keyboard">
+        </a>
+        <p>Mechanical Keyboard</p>
+        <button onclick="addToCart(event)">Add to Cart</button>
+      </div>
+      <div class="product" data-aos="zoom-in" data-aos-delay="300">
+        <a href="https://www.amazon.in/dp/B098T2WGD1" target="_blank">
+          <img src="https://m.media-amazon.com/images/I/81rkZyPRvML._SX679_.jpg" alt="HD Webcam">
+        </a>
+        <p>HD Webcam</p>
+        <button onclick="addToCart(event)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="goals" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+    <h2>Goals</h2>
+    <ul>
+      <li data-aos="fade-right" data-aos-delay="300">
+        🌟 Master full-stack development with scalable cloud infrastructure (AWS/GCP)
+      </li>
+      <li data-aos="fade-right" data-aos-delay="400">
+        🤖 Build and deploy AI-powered web applications integrating machine learning models
+      </li>
+      <li data-aos="fade-right" data-aos-delay="500">
+        🎮 Develop a fully-featured multiplayer FPS game using Unity and Photon Networking
+      </li>
+      <li data-aos="fade-right" data-aos-delay="600">
+        📱 Launch cross-platform mobile apps with Flutter that combine seamless UI and backend integration
+      </li>
+      <li data-aos="fade-right" data-aos-delay="700">
+        🔧 Contribute to open-source projects focused on developer tooling and productivity
+      </li>
+      <li data-aos="fade-right" data-aos-delay="800">
+        📊 Gain deeper experience with data visualization and interactive dashboards
+      </li>
+      <li data-aos="fade-right" data-aos-delay="900">
+        🛠️ Explore DevOps practices and automate CI/CD pipelines for rapid deployment
+      </li>
+    </ul>
+  </section>
+
+  <section id="interests" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+    <h2>Interests</h2>
+    <ul>
+      <li data-aos="fade-left" data-aos-delay="300">
+        🎨 Art: I enjoy sketching and exploring digital design tools like Figma and Photoshop.
+      </li>
+      <li data-aos="fade-left" data-aos-delay="400">
+        🎬 Movies: Sci-fi and superhero films — Marvel, Interstellar, Inception are favorites.
+      </li>
+      <li data-aos="fade-left" data-aos-delay="500">
+        ♟️ Chess: I love playing chess for mental exercise and strategy building.
+      </li>
+    </ul>
+  </section>
+
+  <section id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:123yash2133@sjcem.edu.in">123yash2133@sjcem.edu.in</a></p>
+    <p>Phone: <a href="tel:+917498533950">+91 74985 33950</a></p>
+    <div style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8449767222374!2d72.7759530752158!3d19.800049781619866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be723466141443b%3A0x103a8917804473e0!2sSt.%20John%20College%20of%20Engineering%20and%20Management!5e0!3m2!1sen!2sin!4v1701980838634!5m2!1sen!2sin"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="St John College of Engineering and Management, Palghar"
+      ></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Yash Nawarange. All rights reserved.</p>
+  </footer>
+
+  <button id="scrollToTopBtn" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <button id="themeToggle" title="Toggle Light/Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    // --- AOS Initialization ---
+    AOS.init({
+      once: true, // Whether animation should happen only once - while scrolling down
+      offset: 100, // Offset (in px) from the original trigger point
+      duration: 800, // Duration of animation (in ms)
+      easing: 'ease-out-quad', // Easing function
+    });
+
+    // --- Cart Functionality with Confetti ---
+    let cartCount = 0;
+    const cartCountElement = document.getElementById("cartCount");
+    const confettiContainer = document.getElementById("confettiContainer");
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    function addToCart(event) {
+      cartCount++;
+      cartCountElement.innerText = cartCount;
+
+      // Reset and restart pulse animation
+      cartCountElement.style.animation = 'none';
+      void cartCountElement.offsetWidth; // Trigger reflow
+      cartCountElement.style.animation = 'pulse 1.5s infinite';
+
+      // Confetti effect
+      const btn = event.target;
+      const rect = btn.getBoundingClientRect();
+      const btnCenterX = rect.left + rect.width / 2;
+      const btnCenterY = rect.top + rect.height / 2;
+
+      spawnConfetti(btnCenterX, btnCenterY);
+    }
+
+    function spawnConfetti(x, y) {
+      const colors = ['#00ffd5', '#2575fc', '#6a11cb', '#e74c3c', '#f1c40f'];
+      const numConfetti = 40; // Increased confetti count
+      const spread = 150; // How far confetti spreads
+
+      for (let i = 0; i < numConfetti; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = `${x}px`;
+        confetti.style.top = `${y}px`;
+
+        // Randomize direction and distance
+        const angle = Math.random() * Math.PI * 2; // Full circle
+        const distance = Math.random() * spread;
+        const targetX = x + distance * Math.cos(angle);
+        const targetY = y + distance * Math.sin(angle);
+
+        confetti.style.setProperty('--x', `${targetX - x}px`);
+        confetti.style.setProperty('--y', `${targetY - y + 100}px`); // Slightly fall down
+        confetti.style.setProperty('--r', `${Math.random() * 720}deg`); // Random rotation
+
+        confettiContainer.appendChild(confetti);
+
+        // Remove confetti after animation
+        confetti.addEventListener('animationend', () => {
+          confetti.remove();
+        });
+      }
+    }
+
+    // --- Smooth Scrolling for Navigation ---
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        // Remove active from all and add to clicked
+        navLinks.forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // --- Highlight Active Nav Link on Scroll ---
+    const highlightNavLink = () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust offset for better timing
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', highlightNavLink);
+    document.addEventListener('DOMContentLoaded', highlightNavLink); // Call on load
+
+    // --- Scroll to Top Button Logic ---
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) { // Show after scrolling 300px
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // --- Theme Toggle (Light/Dark Mode) ---
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      body.classList.add(currentTheme);
+      if (currentTheme === 'light-mode') {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      let theme = 'dark-mode';
+      if (body.classList.contains('light-mode')) {
+        theme = 'light-mode';
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+      localStorage.setItem('theme', theme);
+    });
+
+    // --- Dynamic YouTube Embed (to prevent unnecessary loading) ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoWrapper = document.querySelector('.video-wrapper iframe');
+      const youtubeVideoId = 't705Jg8J6XU'; // Replace with an actual YouTube video ID for your work
+      if (videoWrapper && youtubeVideoId) {
+        videoWrapper.src = `https://www.youtube.com/embed/${youtubeVideoId}`;
+      }
+    });
+
+    // --- Google Maps Embed Fix (if it was an issue, common for local files) ---
+    // Make sure your iframe src for maps is correct, the one you had was placeholder.
+    // I've put a valid one for St. John College for demonstration.
+    // <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8449767222374!2d72.7759530752158!3d19.800049781619866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be723466141443b%3A0x103a8917804473e0!2sSt.%20John%20College%20of%20Engineering%20and%20Management!5e0!3m2!1sen!2sin!4v1701980838634!5m2!1sen!2sin" ...></iframe>
+
+  </script>
+</body>
+</html>
